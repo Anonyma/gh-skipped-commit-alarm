@@ -34,7 +34,19 @@ async function getContributions() {
         const { data } = await axios(GH_API_URL, { method: 'POST', data: JSON.stringify(body), headers: headers })
         return data
     } catch (error) {
-        console.error(error)
+        console.error("Error when retrieving contributions: ", formatAxiosError(error))
+        throw new Error(error)
+    }
+}
+
+async function getTodaysContributions() {
+    try {
+        const { data } = await getContributions()
+        const weeks = data.user.contributionsCollection.contributionCalendar.weeks;
+        const lastContribs = weeks[weeks.length - 1].contributionDays
+        return lastContribs[lastContribs.length - 1]
+    } catch (error) {
+        console.error("Error when retrieving contributions: ", formatAxiosError(error))
     }
 }
 
@@ -43,8 +55,10 @@ const postAlert = async (payload) => {
         const headers = { "Content-type": "application/json" }
         await axios.post(WEBHOOK_URL, { text: payload, }, { headers });
     } catch (error) {
-        console.error(error)
+        console.error("Error when posting alert: ", formatAxiosError(error))
     }
 }
 
-module.exports = { getContributions, postAlert }
+const formatAxiosError = (error) => `${error.response.status} - ${error.response.statusText} - ${error.response.data.message}`
+
+module.exports = { getTodaysContributions, postAlert }
