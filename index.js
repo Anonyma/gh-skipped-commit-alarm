@@ -10,6 +10,8 @@ cron.schedule(CRON_SCHEDULE, async () => {
   const today = await getTodaysContributions()
 
   if (today.contributionCount == 0) {
-    postAlert("you skipped commit day!")
+    if (shouldNotify()) {
+      postAlert("you skipped commit day!")
+    }
   }
 });

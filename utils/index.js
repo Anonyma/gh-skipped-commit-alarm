@@ -4,6 +4,7 @@ const axios = require('axios')
 const GH_TOKEN = process.env.GH_TOKEN
 const GH_USERNAME = process.env.GH_USERNAME
 const WEBHOOK_URL = process.env.WEBHOOK_URL
+const NOTIFY_ON_WEEKEND = process.env.NOTIFY_ON_WEEKEND || false
 
 const GH_API_URL = 'https://api.github.com/graphql'
 
@@ -57,6 +58,13 @@ const postAlert = async (payload) => {
   } catch (error) {
     console.error("Error when posting alert: ", formatAxiosError(error))
   }
+}
+
+const shouldNotify = async (weekday) => {
+  if (NOTIFY_ON_WEEKEND == false) {
+    if (weekday == 0 || weekday == 6) return false
+  }
+  return true
 }
 
 const formatAxiosError = (error) => `${error.response.status} - ${error.response.statusText} - ${error.response.data.message}`
