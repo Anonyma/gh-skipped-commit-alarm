@@ -69,4 +69,4 @@ const shouldNotify = async (weekday) => {
 
 const formatAxiosError = (error) => `${error.response.status} - ${error.response.statusText} - ${error.response.data.message}`
 
-module.exports = { getTodaysContributions, postAlert }
+module.exports = { getTodaysContributions, postAlert, shouldNotify }

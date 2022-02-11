@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const cron = require('node-cron');
-const { getTodaysContributions, postAlert } = require('./utils');
+const { getTodaysContributions, postAlert, shouldNotify } = require('./utils');
 
 const CRON_SCHEDULE = process.env.CRON_SCHEDULE || '0 19 * * *'
 
