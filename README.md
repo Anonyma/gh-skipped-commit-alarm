@@ -25,3 +25,6 @@ Find an explanation [here](https://www.npmjs.com/package/node-cron)
 30 14 * * *
 # ^ run everyday at 14:30
 ```
+
+#### ⚙️ `NOTIFY_ON_WEEKEND`
+Set it to `true` if you want to receive alerts on Sat/Sun
