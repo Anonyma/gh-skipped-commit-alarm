@@ -1,6 +1,10 @@
-# gh-contributions-notifier
+# Github commit-skipper alarm
 
-Skip leg day, not commit day ᕦ(ò_óˇ)
+
+**Skip leg day, not commit day ᕦ(ò_óˇ)**
+
+_Frequently forget to commit + push your code at the end of the day? Worry not, we have the right tool to help you..._
+
 
 ## Instructions
 > Prerequisites: You will need `npm` (or `yarn`) and Node.js installed
